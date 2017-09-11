@@ -6,5 +6,20 @@ jobs:
       - image: circleci/node:7
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-my-project-{{ checksum "project.clj" }}
+            - v1-my-project-
       - run: npm install
+      - save_cache:
+          key: v1-my-project-{{ checksum "project.clj" }}
+          paths:
+            - ~/.m2
       - run: npm test
+      # Save artifacts
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build
+      # Upload test results
+      - store_test_results:
+          path: /tmp/test-reports
