@@ -8,14 +8,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-my-project-{{ checksum "project.clj" }}
-            - v1-my-project-
+            - v1-react-redux-starter-kit-{{ checksum "yarn.lock" }}
+            - v1-react-redux-starter-kit-
       - run: npm install
+      - run: npm test
       - save_cache:
-          key: v1-my-project-{{ checksum "project.clj" }}
+          key: v1-react-redux-starter-kit-{{ checksum "yarn.lock" }}
           paths:
             - ~/.m2
-      - run: npm test
       # Save artifacts
       - store_artifacts:
           path: /tmp/artifacts
