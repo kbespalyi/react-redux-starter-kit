@@ -8,8 +8,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-react-redux-starter-kit-{{ checksum "yarn.lock" }}
-            - v1-react-redux-starter-kit-
+            - v2-react-redux-starter-kit-{{ checksum "yarn.lock" }}
+            - v2-react-redux-starter-kit-
       - run: npm install
       - run: npm test
       - save_cache:
